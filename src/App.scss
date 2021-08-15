@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
+@import "./styles/variables";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  font-family: $font-family;
+  font-size: $font-size;
+  background: $background-color;
+  position: relative;
+  @include flex-center;
+  flex-direction: column;
+  @include hw100v;
+}
+
+#root {
+  @include hw100;
+  .App {
+    @include hw100;
+    .template {
+      @include hw100;
+    }
+  }
+}
+
+.Toastify__toast-container {
+  font-size: 1.6rem;
+}

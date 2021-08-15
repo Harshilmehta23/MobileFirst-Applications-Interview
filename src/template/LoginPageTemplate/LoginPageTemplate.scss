@@ -1,0 +1,8 @@
+@import "../../styles/variables";
+
+.login-page-template {
+  .login-page-template-content {
+    @include flex-center;
+    height: calc(100% - #{$footer-height});
+  }
+}

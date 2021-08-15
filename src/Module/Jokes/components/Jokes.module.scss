@@ -1,0 +1,83 @@
+@import url("https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@1,400;1,700&display=swap");
+@import "../../../styles/variables";
+
+.container {
+  display: grid;
+  font-family: "Comic Neue", cursive;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 2rem;
+  margin: 2rem;
+}
+
+.loading {
+  @include flex-center;
+  height: calc(100vh - #{$header-height} - #{$footer-height});
+  font-size: 2rem;
+}
+
+.block-ui-overlay {
+  opacity: 0.7;
+  filter: alpha(opacity=50);
+  background-color: #ccc;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  overflow: hidden;
+  width: 100%;
+  height: 25vh;
+  min-height: 20rem;
+  position: relative;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+
+  .setup {
+    height: 67%;
+    padding: 2rem;
+    font-size: 2.5rem;
+    font-weight: bold;
+    @include lg {
+      font-size: 2rem;
+    }
+    @include md {
+      font-size: 2rem;
+    }
+    @include sm {
+      font-size: 2rem;
+    }
+  }
+
+  .fetchnew {
+    height: 70%;
+    font-size: 8rem;
+    text-align: center;
+  }
+
+  .punchline {
+    @include flex-center;
+    flex-direction: column;
+    height: 33%;
+    border-radius: 20px 20px 0 0;
+    border: 1px solid #ff4b2b;
+    background: linear-gradient(to right, #ff4b2b, #ff416c);
+    background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 1.2rem 2rem;
+    text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 0.8s ease-in;
+  }
+
+  .click {
+    display: block;
+    padding: 0.8rem 0;
+    cursor: pointer;
+    color: #ffc83d;
+  }
+}

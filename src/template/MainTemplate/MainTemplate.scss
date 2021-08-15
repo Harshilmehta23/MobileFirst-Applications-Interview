@@ -1,0 +1,11 @@
+@import "../../styles/variables";
+
+.main-template {
+  height: unset !important;
+  .main-template-content {
+    height: calc(100% - #{$header-height} - #{$footer-height});
+    @include xl {
+      height: calc(100% - #{$header-height-xl} - #{$footer-height});
+    }
+  }
+}
