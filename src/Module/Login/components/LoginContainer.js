@@ -6,6 +6,7 @@ import Login from "./Login";
 import * as authActions from "../redux";
 import { showNotification } from "../../../utils/notifications";
 import { userNameValidation, passwordValidation } from "../../../utils";
+import { removeToken } from "../../../utils";
 
 const LoginContainer = () => {
   const [isSignUpPage, setIsSignUpPage] = useState(false);
@@ -16,22 +17,23 @@ const LoginContainer = () => {
 
   const loading = useSelector((state) => state.auth.loading);
 
+  useEffect(() => {
+    const rememberMe = localStorage.getItem("rememberMe") === "true";
+    if (!rememberMe) {
+      removeToken();
+    }
+  }, []);
+
   const [loginInputs, setLoginInputs] = useState({
     userName: "",
     password: "",
     rememberMe: false,
   });
+
   const [signUpInputs, setSignUpInputs] = useState({
     userName: "MobileFirstA",
     password: "Test1234",
   });
-
-  useEffect(() => {
-    const rememberMe = localStorage.getItem("rememberMe") === "true";
-    const userName = rememberMe ? localStorage.getItem("userName") : "";
-    const password = rememberMe ? localStorage.getItem("password") : "";
-    setLoginInputs({ userName, password, rememberMe: true });
-  }, []);
 
   const loginInputChangeHandler = (e) => {
     const input = e.target;

@@ -55,8 +55,6 @@ export const authSlice = createSlice({
         console.log(data, arg);
         setToken(data && data.accessToken);
         localStorage.setItem("rememberMe", arg.rememberMe);
-        localStorage.setItem("userName", arg.rememberMe ? arg.userName : "");
-        localStorage.setItem("password", arg.rememberMe ? arg.password : "");
         return {
           ...state,
           loading: false,
