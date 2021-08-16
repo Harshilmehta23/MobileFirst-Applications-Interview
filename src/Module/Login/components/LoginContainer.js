@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
@@ -17,30 +17,41 @@ const LoginContainer = () => {
   const loading = useSelector((state) => state.auth.loading);
 
   const [loginInputs, setLoginInputs] = useState({
-    userName: "MobileFirst",
-    password: "Test1234",
+    userName: "",
+    password: "",
+    rememberMe: false,
   });
   const [signUpInputs, setSignUpInputs] = useState({
     userName: "MobileFirstA",
     password: "Test1234",
   });
 
+  useEffect(() => {
+    const rememberMe = localStorage.getItem("rememberMe") === "true";
+    const userName = rememberMe ? localStorage.getItem("userName") : "";
+    const password = rememberMe ? localStorage.getItem("password") : "";
+    setLoginInputs({ userName, password, rememberMe: true });
+  }, []);
+
   const loginInputChangeHandler = (e) => {
+    const input = e.target;
+    const value = input.type === "checkbox" ? input.checked : input.value;
     setLoginInputs({
       ...loginInputs,
-      [e.target.name]: e.target.value,
+      [input.name]: value,
     });
   };
 
   const onLoginFormSubmit = (e) => {
-    const { userName, password } = loginInputs;
+    const { userName, password, rememberMe } = loginInputs;
     userValidation(
       e,
       userName,
       password,
       authActions.userLogin,
       "Login Successful",
-      "Login Failed"
+      "Login Failed",
+      rememberMe
     );
   };
 
@@ -69,7 +80,8 @@ const LoginContainer = () => {
     password,
     callback,
     successMessage,
-    errorMessage
+    errorMessage,
+    rememberMe
   ) => {
     event.preventDefault();
 
@@ -87,7 +99,7 @@ const LoginContainer = () => {
       return;
     } else {
       setError({ userName: "", password: "" });
-      dispatch(callback({ userName, password })).then((res) => {
+      dispatch(callback({ userName, password, rememberMe })).then((res) => {
         if (res.error) {
           return showNotification(errorMessage, "error", 3000, "top-right");
         }

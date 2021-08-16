@@ -7,7 +7,7 @@ export const userLogin = createAsyncThunk("userLogin", (loginInputs) =>
   api.post("/login", {
     // Email because json-server-auth requires email and password as key
     userName: loginInputs.userName,
-    email: loginInputs.userName.replace(/\s+/g, '').concat('@mobilefirst.com'),
+    email: loginInputs.userName.replace(/\s+/g, "").concat("@mobilefirst.com"),
     password: loginInputs.password,
   })
 );
@@ -16,7 +16,7 @@ export const userSignUp = createAsyncThunk("userSignUp", (signUpInputs) =>
   api.post("/register", {
     // Email because json-server-auth requires email and password as key
     userName: signUpInputs.userName,
-    email: signUpInputs.userName.replace(/\s+/g, '').concat('@mobilefirst.com'),
+    email: signUpInputs.userName.replace(/\s+/g, "").concat("@mobilefirst.com"),
     password: signUpInputs.password,
   })
 );
@@ -52,8 +52,11 @@ export const authSlice = createSlice({
       .addCase(userLogin.fulfilled, (state, action) => {
         const data = action.payload && action.payload.data;
         const arg = action.meta && action.meta.arg;
+        console.log(data, arg);
         setToken(data && data.accessToken);
-        localStorage.setItem("userName", arg.userName);
+        localStorage.setItem("rememberMe", arg.rememberMe);
+        localStorage.setItem("userName", arg.rememberMe ? arg.userName : "");
+        localStorage.setItem("password", arg.rememberMe ? arg.password : "");
         return {
           ...state,
           loading: false,
@@ -77,6 +80,7 @@ export const authSlice = createSlice({
       .addCase(userSignUp.fulfilled, (state, action) => {
         const data = action.payload && action.payload.data;
         const arg = action.meta && action.meta.arg;
+
         setToken(data && data.accessToken);
         localStorage.setItem("userName", arg.userName);
         return {

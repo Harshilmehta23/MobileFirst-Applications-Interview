@@ -50,9 +50,19 @@ const Login = ({
             value={loginInputs.password}
             onChange={loginInputChangeHandler}
           />
-           {error.password.length > 0 && (
+          {error.password.length > 0 && (
             <span className={classes.error}>{error.password}</span>
           )}
+          <label className={classes.rememberMe}>
+            <input
+              name="rememberMe"
+              type="checkbox"
+              className={classes.rememberTitle}
+              checked={loginInputs.rememberMe}
+              onChange={loginInputChangeHandler}
+            />{" "}
+            Remember me
+          </label>
           <button className={classes.button} type="submit">
             Login
           </button>
@@ -87,6 +97,7 @@ const Login = ({
           {error.password.length > 0 && (
             <span className={classes.error}>{error.password}</span>
           )}
+
           <button className={classes.button}>Sign Up</button>
         </form>
       </div>
