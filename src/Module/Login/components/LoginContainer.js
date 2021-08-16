@@ -21,8 +21,10 @@ const LoginContainer = () => {
     const rememberMe = localStorage.getItem("rememberMe") === "true";
     if (!rememberMe) {
       removeToken();
+    } else {
+      history.push("/dashboard");
     }
-  }, []);
+  }, [history]);
 
   const [loginInputs, setLoginInputs] = useState({
     userName: "",
