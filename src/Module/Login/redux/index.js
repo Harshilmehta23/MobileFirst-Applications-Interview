@@ -78,9 +78,9 @@ export const authSlice = createSlice({
       .addCase(userSignUp.fulfilled, (state, action) => {
         const data = action.payload && action.payload.data;
         const arg = action.meta && action.meta.arg;
-
         setToken(data && data.accessToken);
         localStorage.setItem("userName", arg.userName);
+        localStorage.setItem("rememberMe", false);
         return {
           ...state,
           loading: false,
