@@ -1,5 +1,9 @@
 This project was created by [Harshil Mehta](https://www.linkedin.com/in/harshil-mehta-437620145), for Interview at [MobileFirst Applications](https://www.mobilefirst.in/).
 
+### `npm install`
+
+To install required dependencies.
+
 ### `npm run dev`
 
 Concurrently launches App and Server on respective Port.
