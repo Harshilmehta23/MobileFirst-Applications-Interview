@@ -1,5 +1,9 @@
 This project was created by [Harshil Mehta](https://www.linkedin.com/in/harshil-mehta-437620145), for Interview at [MobileFirst Applications](https://www.mobilefirst.in/).
 
+I have tried adding typeScript in Jokes file.
+
+I haven't work with typescript but by reviewing current code and working with it for 3-4 days I will definitely be able to work with it.
+
 ### `npm run dev`
 
 Concurrently launches App and Server on respective Port.
