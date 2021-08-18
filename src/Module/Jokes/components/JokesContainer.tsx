@@ -4,11 +4,11 @@ import { useSelector, useDispatch } from "react-redux";
 import Jokes from "./Jokes";
 import * as jokesActions from "../redux";
 
-const JokesContainer = () => {
+const JokesContainer: React.FC = () => {
   const dispatch = useDispatch();
 
-  const loading = useSelector((state) => state.jokes.loading);
-  const jokes = useSelector((state) => state.jokes.jokes);
+  const loading = useSelector((state: any) => state.jokes.loading);
+  const jokes = useSelector((state: any) => state.jokes.jokes);
 
   const fetchJokes = useCallback(() => {
     dispatch(jokesActions.fetchJokes());
